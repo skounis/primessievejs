@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>Get the first X Primes - Javascript example</title>
+  <meta name="description" content="" />
+  <meta name="author" content="Stavros Kounis" />
+
+  <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  
+	<script>
+		function getPrimes(max) {
+			var sieve = [], i, j, primes = [];
+			for ( i = 2; i <= max; ++i) {
+				if (!sieve[i]) {
+					// i has not been marked -- it is prime
+					primes.push(i);
+					for ( j = i << 1; j <= max; j += i) {
+						sieve[j] = true;
+					}
+				}
+			}
+			console.log("sieve length: " + sieve.length);
+			return primes;
+		}
+
+		var primes;
+		var number_of_primes = 100;
+		var max = number_of_primes;
+
+		do {
+			primes = getPrimes(max)
+			console.log("... for max: " + max + ", " + primes.length + " primes found.\n");
+			max = max << 1;
+		} while(primes.length < number_of_primes);
+
+		console.log("max: " + max);
+		console.log("primes count: " + primes.length);
+		console.log("primes: " + primes.toString());
+
+		console.log("-- First " + number_of_primes + " primes --");
+		console.log(primes.slice(0, 100).toString());
+
+		</script>
+</head>
+
+<body>
+  <div>
+    <header>
+      <h1>First 100 Primes in Javascript</h1>
+    </header>
+	<p>Please check the Javascript Console for output.</p>
+    <footer>
+     <p>Stavros Kounis</p>
+    </footer>
+  </div>
+</body>
+</html>
